@@ -1,7 +1,44 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% load static %}
 
-    <div>No chyba się zapisało, zobaczmy!</div>
+{% block style %}
+
+    <link rel="stylesheet" href="{% static 'css/game_record_style.css' %}">
 
 {% endblock %}
+
+{% block content %}
+
+    <a href="/main">Strona główna</a>
+    <div class="button-container">
+        <button class="start">start</button>
+        <button class="next">next</button>
+        <button class="prev">prev</button>
+        <button class="board-clear">Clear</button>
+    </div><br>
+    <div class="players">
+        <span>Player1: {{ player_1 }}</span> <span class="player1"></span><br>
+        <span>Player2: {{ player_2 }}</span> <span class="player2"></span><br>
+        <span>Wynik: {{ score }} </span>
+    </div> <br>
+    <div class="container">
+
+    <div class="board-container"></div>
+    <div class="game-record"></div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript" src="{% static 'js/game_record.js' %}"></script>
+    <script>
+
+        var context = {{ game_record|safe }},
+            colorSwap = '{{ color_swap|safe }}';
+
+    </script>
+{% endblock %}
+
+

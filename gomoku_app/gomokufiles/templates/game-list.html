@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div>Lista gier: </div><br>
+    <ul>
+
+        {% for item in games %}
+
+            <li>
+
+                <a href="/game-record/{{ item.id }}/">{{ item.player_1 }}-{{ item.player_2 }}  {{ item.game_date }} </a>
+                <a href="/delete-game/{{ item.id }}"> Usuń zapis gry</a>
+
+            </li>
+
+        {% endfor %}
+
+    </ul>
+
+{% endblock %}

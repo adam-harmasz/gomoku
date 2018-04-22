@@ -1,10 +1,9 @@
 
     $(document).ready(function () {
 
-        var context = {{ game_record|safe }},
-        turn = 'O',
-        move = 0,
-        grid_coordinates = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'];
+        var turn = 'O',
+            move = 0,
+            grid_coordinates = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'];
         console.log(context);
 
         // {#Creating board#}
@@ -72,8 +71,7 @@
         // {#Players can change their colors after opening, #}
         // {#    so checking if that happened in Game its checked in Django and imported as context with value yes or no#}
         function adjustPlayerColor() {
-            var colorSwap = '{{ color_swap|safe }}';
-            console.log(colorSwap + 'testtetstetr');
+            console.log(colorSwap + '   testtetstetr');
             if (colorSwap == 'yes') {
                 $('.player1').html('O');
                 $('.player2').html('X');

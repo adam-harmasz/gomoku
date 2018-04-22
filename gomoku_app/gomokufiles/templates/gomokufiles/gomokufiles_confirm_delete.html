@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">Jeśli jesteś pewny, że chcesz usunąć grę, wciśnij przycisk "ok"</div>
+        <form	action=""	method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input	type="submit"	value="OK">
+        </form>
+    <br><br>
+    <a href="/game-list/">Lista gier</a>
+
+{% endblock %}
