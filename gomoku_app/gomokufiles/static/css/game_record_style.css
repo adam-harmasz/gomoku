@@ -1,0 +1,50 @@
+.col-master {
+            display: inline-grid;
+            border: black;
+            border-width: thin;
+            background: navajowhite;
+
+        }
+
+        .col-slave {
+            display: grid;
+            height: 50px;
+            width: 50px;
+            border-size: 0px;
+            border-style: solid;
+            border-color: black;
+            background: chocolate;
+            font-size: 35px;
+            color: white;
+            text-align: center;
+        }
+
+        .container{
+            width: 900px;
+            margin: auto;
+        }
+
+        .board-container {
+            position: fixed;
+            float: left;
+            height: 780px;
+            width: 770px;
+
+        }
+
+        .button-container {
+            margin-right: 200px;
+        }
+
+        .game-record {
+            display: inline-grid;
+            float: left;
+            float: right;
+
+        }
+
+        .game-record-slave {
+            display: table-column-group;
+            float: right;
+
+        }
