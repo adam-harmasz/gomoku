@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -20,6 +21,11 @@ class GomokuFiles(models.Model):
             self.color_swap,
             self.game_record,
         )
+
+
+class GomokuUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    gomoku_files = models.ForeignKey(GomokuFiles, on_delete=models.CASCADE)
 
 
 # class FilesData(models.Model):

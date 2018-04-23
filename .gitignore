@@ -104,5 +104,10 @@ ENV/
 /idea
 *.idea
 
+.settings.py
 
+.not_to_git.py
+*.not_to_git.py
+gomoku_app/gomoku_app/not_to_git.py
 
+not_to_git

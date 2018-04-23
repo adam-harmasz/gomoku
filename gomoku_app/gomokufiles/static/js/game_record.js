@@ -9,7 +9,6 @@
         // {#Creating board#}
         function board() {
             var board_div = $('.board-container');
-
             for (var j = 0; j < 15; j++) {
                 var new_div_row = $('<div class="col-master ' + grid_coordinates[j] + '">' + grid_coordinates[j] + '</div>');
                 $(board_div.append(new_div_row));
@@ -21,7 +20,6 @@
                     $(new_div_row.append(new_div_col));
                 }
             }
-
         }
 
         // {#Adding move on board from game record which is imported from Django back-end as context#}
@@ -38,13 +36,11 @@
                     move += 1;
                 });
             }
-
         }
 
         // {#Creating function to undo moves#}
         function prevMove() {
-            var searchDiv = $('.prev'),
-                nextDiv = '';
+            var searchDiv = $('.prev');
             if( move < 256) {
                 searchDiv.on('click', function () {
                     turn = turn === 'O' ? 'X' : 'O';
@@ -109,7 +105,6 @@
         function moveGameRecord() {
             var divBoardSlave = $('.col-slave'),
                 gameRecordDivs = $('.game-record-slave');
-
             gameRecordDivs.on('click', function () {
                 divBoardSlave.html('');
                 turn = 'O';

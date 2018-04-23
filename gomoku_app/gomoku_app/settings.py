@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from .not_to_git import db_pass, secret_key
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8_uj@&0z2u_m*dgd4+=xw+eg7(-&0=y1j=d)1&9*3&gn=b3q=@'
+SECRET_KEY = secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,7 +41,6 @@ INSTALLED_APPS = [
     'django_extensions',
     'rest_framework',
     'gomoku_project',
-    'gomoku_app',
     'gomokufiles',
 ]
 
@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gomoku_db',
         'USER': 'root',
-        'PASSWORD': 'coderslab',
+        'PASSWORD': db_pass,
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
