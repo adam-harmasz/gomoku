@@ -25,7 +25,8 @@ class GomokuFiles(models.Model):
 
 class GomokuUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    gomoku_files = models.ForeignKey(GomokuFiles, on_delete=models.CASCADE)
+    gomoku_files = models.ForeignKey(GomokuFiles, on_delete=models.CASCADE, null=True)
+    email = models.EmailField(max_length=64, unique=True, default='')
 
 
 # class FilesData(models.Model):
