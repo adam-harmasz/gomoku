@@ -17,7 +17,8 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from gomoku_project.views import GameListView, GameCreateView, show_html, simpleView
-from gomokufiles.views import UploadFile, UploadedGameView, MainView, GamesListView, GameDelete, LoginView, LogoutView
+from gomokufiles.views import UploadFile, UploadedGameView, MainView, GamesListView, GameDelete, LoginView, LogoutView,\
+    RegistrationView
 
 
 urlpatterns = [
@@ -35,4 +36,5 @@ urlpatterns = [
     url(r'^delete-game/(?P<pk>(\d)+)/$', GameDelete.as_view()),
     url(r'^login/$', LoginView.as_view()),
     url(r'^logout/$', LogoutView.as_view()),
+    url(r'^registration/$', RegistrationView.as_view()),
 ]

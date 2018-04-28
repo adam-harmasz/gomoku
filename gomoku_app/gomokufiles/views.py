@@ -7,8 +7,51 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DeleteView
 import re
 
-from .forms import GomokuFileForm, LoginForm
-from .models import GomokuFiles
+from .forms import GomokuFileForm, LoginForm, RegistrationForm
+from .models import GomokuFiles, GomokuUser
+
+
+class RegistrationView(View):
+    def get(self, request):
+        form = RegistrationForm()
+        ctx = {
+            'form': form,
+        }
+        return render(request, 'registration.html', ctx)
+
+    def post(self, request):
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password_1 = form.cleaned_data['password_1']
+            password_2 = form.cleaned_data['password_2']
+            email = form.cleaned_data['email']
+            user = User.objects.filter(username=username)
+            if user:
+                ctx = {
+                    'err': 'Podany login jest już zajęty',
+                    'form': form,
+                }
+                return render(request, 'registration.html', ctx)
+            else:
+                if password_1 != password_2:
+                    ctx = {
+                        'form': form,
+                        'err': "Podane hasła są różne!",
+                    }
+                    return render(request, 'registration.html', ctx)
+
+                else:
+                    user = User.objects.create_user(username=username, password=password_1, email=email)
+                    login(request, user)
+                    gomoku_user = GomokuUser.objects.create(user=user, email=email)
+                    return HttpResponseRedirect('/login/')
+        else:
+            ctx = {
+                'form': form,
+                'err': 'form not valid'
+            }
+            return render(request, 'registration.html', ctx)
 
 
 class LoginView(View):
@@ -71,10 +114,10 @@ class UploadFile(LoginRequiredMixin, View):
                 player_regex_2 = r'[a-z0-9]+'
                 score_regex = r'(1-0)|(0-1)'
                 score = re.search(score_regex, game_record[6]).group()
-                player_1 = re.search (player_regex_2, re.search (regex, game_record[4]).group ()).group ()
-                player_2 = re.search (player_regex_2, re.search (regex, game_record[5]).group ()).group ()
-                date = re.search (game_date_regex, re.search (regex, game_record[2]).group ()).group ()
-                time = re.search (game_time_regex, re.search (regex, game_record[7]).group ()).group ()
+                player_1 = re.search (player_regex_2, re.search(regex, game_record[4]).group()).group()
+                player_2 = re.search (player_regex_2, re.search (regex, game_record[5]).group()).group()
+                date = re.search (game_date_regex, re.search (regex, game_record[2]).group()).group()
+                time = re.search (game_time_regex, re.search (regex, game_record[7]).group()).group()
                 # Making list of only game record
                 for item in game_record[-5:-1]:
                     only_record.append (item)
@@ -85,12 +128,12 @@ class UploadFile(LoginRequiredMixin, View):
                     if re_item is not None:
                         for better_item in re_item:
                             temp_array = []
-                            if better_item.group () != 'white' and better_item.group () != 'black' and better_item.group () != '--':
-                                temp_array.append (re.search (r'[a-z]', better_item.group ()).group ())
-                                temp_array.append (re.search (r'[0-9]+', better_item.group ()).group ())
+                            if better_item.group() != 'white' and better_item.group () != 'black' and better_item.group() != '--':
+                                temp_array.append(re.search (r'[a-z]', better_item.group()).group())
+                                temp_array.append(re.search (r'[0-9]+', better_item.group()).group())
                             else:
-                                temp_array.append (better_item.group ())
-                            better_record.append (temp_array)
+                                temp_array.append(better_item.group())
+                            better_record.append(temp_array)
                 # checking if players switched their colors during the game (after swap opening 2nd player can choose color)
                 color_swap = 'yes'
                 print(better_record[5], 'test color swapa')

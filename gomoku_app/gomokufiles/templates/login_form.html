@@ -2,10 +2,21 @@
 
 {% block content %}
 
-    <form method="POST">
+    <div class="container-fluid">
+
+    <div class="row">{{ err }}</div>
+
+    <div class="row">
+
+        <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="OK">
-    </form>
+        </form>
+
+    </div>
+
+
+    </div>
 
 {% endblock %}

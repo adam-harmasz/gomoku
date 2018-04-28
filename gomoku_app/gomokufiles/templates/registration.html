@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row2">{{ err }}</div>
+
+        <div class="row2">
+
+            <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="OK">
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}
