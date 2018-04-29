@@ -84,7 +84,7 @@
             console.log(divGameRecord);
             console.log(context[0] + context[1]);
             for (var i = 0; i < parseInt(context.length, 10); i++) {
-                var newDivGameRecord = $('<span class="game-record-slave" name="' + (i + 1) + '">' + (i + 1) + ': ' + context[i] + '</span>');
+                var newDivGameRecord = $('<li class="game-record-slave" name="' + (i + 1) + '">' + (i + 1) + ': ' + context[i].join('') + '</li>');
                     $(divGameRecord.append(newDivGameRecord));
                     console.log('test robienia divów')
             }

@@ -29,8 +29,8 @@ urlpatterns = [
 
     ################ gomokufiles urls ######################
 
-    url(r'^main/$', MainView.as_view()),
-    url(r'^file-test/$', UploadFile.as_view()),
+    url(r'^main', MainView.as_view()),
+    url(r'^file-upload/$', UploadFile.as_view()),
     url(r'^game-record/(?P<id>(\d)+)/$', UploadedGameView.as_view()),
     url(r'^game-list/$', GamesListView.as_view()),
     url(r'^delete-game/(?P<pk>(\d)+)/$', GameDelete.as_view()),
