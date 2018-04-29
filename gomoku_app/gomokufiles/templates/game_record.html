@@ -12,39 +12,35 @@
 
     <main role="main" class="container">
         <div class="row">
-            <div class="col">
+            <div class="col-lg-8">
+                <div class="button-container">
+                    <button class="buttons start">start</button>
+                    <button class="buttons next">next</button>
+                    <button class="buttons prev">prev</button>
+                    <button class="buttons board-clear">Clear</button>
+                </div>
+            </div>
+            <div class="col-lg-4">
                 <div class="players">
                     <ul>
                         <li><span>Player1: {{ player_1 }}</span> <span class="player1"></span></li>
                         <li><span>Player2: {{ player_2 }}</span> <span class="player2"></span></li>
                         <li><span>Wynik: {{ score }} </span></li>
                     </ul>
-                </div> <br>
-            </div>
-            <div class="col button-container">
-                <div class="button-container">
-                    <ul>
-                        <li><button class="start">start</button></li>
-                        <li><button class="next">next</button> </li>
-                        <li><button class="prev">prev</button></li>
-                        <li><button class="board-clear">Clear</button></li>
-                    </ul>
                 </div>
             </div>
+        </div>
         <div class="row">
-            <div class="col">
+           {% comment %} <div class="col-lg-1">
+                <ol class="board-numbers"></ol>
+            </div>{% endcomment %}
+            <div class="col-lg-9">
                 <div class="board-container"></div>
             </div>
-            <div class="col">
-                <ol class="game-record"></ol>
+            <div class="col-lg-2">
+                <div class="game-record"></div>
             </div>
         </div>
-
-
-        <div class="container">
-
-
-    </div>
     </main>
 
 {% endblock %}

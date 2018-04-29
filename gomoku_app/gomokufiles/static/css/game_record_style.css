@@ -1,51 +1,81 @@
 .col-master {
-            display: inline-grid;
-            border: black;
-            border-width: thin;
-            background: navajowhite;
-
+    display: inline-grid;
+    border: black;
+    border-width: thin;
+    background: azure;
+    text-align: center;
+    font-style: oblique;
+    height: 45px;
         }
 
 .col-slave {
-    display: grid;
-    height: 50px;
-    width: 50px;
+    display: -moz-grid-group;
+    height: 45px;
+    width: 45px;
     border-size: 0px;
     border-style: solid;
     border-color: black;
     background: chocolate;
-    font-size: 35px;
+    font-size: 30px;
     color: white;
     text-align: center;
 }
 
-.container{
-    width: 900px;
-    margin: auto;
-}
-
 .board-container {
-    float: left;
-    height: 780px;
-    width: 770px;
+    width: 800px;
+    height: 800px;
+    padding: 0px;
 }
 
 .button-container {
+    display: inline;
     margin-right: 200px;
 }
 
 .game-record {
     display: inline-grid;
-    float: left;
-    float: right;
+
 }
 
 .game-record-slave {
-    display: table-column-group;
-    float: right;
+    display: inline-grid;
+    text-align: left;
 }
 
 main {
     padding-top: 75px;
+    width: 80%;
 }
+
+.row2 {
+    display: inline;
+}
+
+body {
+    background-color: azure;
+}
+
+.board-coord {
+    position: sticky;
+    display: inline-grid;
+    height: 45px;
+    width: 30px;
+    color: black;
+}
+
+.board-coord-slave {
+    position: absolute;
+    bottom: 20%;
+}
+
+#coord-0 {
+    color: azure;
+}
+
+.players {
+    text-align: left;
+    float: left;
+}
+
+
 
