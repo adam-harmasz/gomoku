@@ -56,9 +56,13 @@
                 if (move === 1) {
                     prevMove();
                 } else if (move >= context.length) {
-                    searchDiv.off('click')
+                    silenceNext();
                 }
             })
+        }
+
+        function silenceNext() {
+            $('.next').off('click');
         }
 
         // {#Creating function to undo moves#}
@@ -73,12 +77,14 @@
                 move -= 1;
                 $('.' + context[move][0] + '.' + context[move][1] + '').html('');
                 if (move === 0) {
-                    searchDiv.off('click');
+                    silencePrev();
                 }
             });
         }
 
-
+        function silencePrev() {
+            $('.prev').off('click');
+        }
 
         // {#function responsible for starting review#}
         function initGame() {
@@ -114,7 +120,15 @@
             for (var i = 0; i < parseInt(context.length, 10); i++) {
                 var newDivGameRecord = $('<button class="game-record-slave" name="' + (i + 1) + '">' + (i + 1) + ': ' + context[i].join('') + '</button>');
                     $(divGameRecord.append(newDivGameRecord));
-                    console.log('test robienia divów')
+
+                if ((i + 1) === context.length) {
+                    console.log('test silenca');
+                    newDivGameRecord.on('click', function () {
+                        silenceNext();
+                        silencePrev();
+                        prevMove();
+                    });
+                }
             }
         }
 
@@ -127,9 +141,9 @@
                 divBoardSlave.html('');
                 turn = 'O';
                 move = 0;
+                silenceNext();
+                silencePrev();
                 nextMove();
-                $('.prev').off('click');
-
             })
         }
 
