@@ -25,28 +25,17 @@
                     for (var i = 0; i < 15; i++) {
                         var new_div_col = $('<div class="col-slave ' +
                             grid_coordinates[j] +
-                            ' ' + (i + 1) + '"' + '' +
-                            ' name="E"></div>');
+                            ' ' + (i + 1) + '"' + '></div>');
                         $(new_div_row.append(new_div_col));
                     }
                 }
             }
         }
 
-        // Adding coordinate numbers to the board
-
-        /*function boardNumbers() {
-            var boardNumber = $('.board-numbers');
-            for (var i = 0; i < 15; i++ ) {
-                var newElement = $('<li class="board-numbers-slave"></li>');
-                $(boardNumber.append(newElement));
-            }
-        }*/
 
         // {#Adding move on board from game record which is imported from Django back-end as context#}
         function nextMove() {
-            var searchDiv = $('.next'),
-                nextDiv = '';
+            var searchDiv = $('.next');
 
             searchDiv.on('click', function () {
                 console.log(move + " który ruch");
@@ -70,7 +59,6 @@
                         silenceNext();
                     }
                 }
-
             })
         }
 
@@ -85,12 +73,17 @@
             searchDiv.on('click', function () {
                 turn = turn === 'O' ? 'X' : 'O';
                 if (move === context.length) {
+                    silenceNext();
                     nextMove();
+                    silenceLast();
+                    lastMove();
                 }
                 move -= 1;
                 $('.' + context[move][0] + '.' + context[move][1] + '').html('');
                 if (move === 0) {
                     silencePrev();
+                    silenceLast();
+                    lastMove();
                 }
             });
         }
@@ -99,11 +92,42 @@
             $('.prev').off('click');
         }
 
+        function lastMove() {
+            var last_button = $('.last'),
+                board_slave = $('.col-slave');
+
+            last_button.on('click', function () {
+                board_slave.html('');
+                turn = 'O';
+                move = 0;
+                for (var i = 0; i < context.length; i++){
+                    turn = turn === 'O' ? 'X' : 'O';
+                    if (turn === 'O') {
+                        $('.' + context[i][0] + '.' + context[i][1] + '').html($('<img src="' + white_src + '">'));
+                        move += 1;
+                    } else {
+                        $('.' + context[i][0] + '.' + context[i][1] + '').html($('<img src="' + black_src + '">'));
+                        move += 1;
+                    }
+                }
+                console.log(move + "  który mamy ruch");
+                silencePrev();
+                prevMove();
+                silenceNext();
+                silenceLast();
+            });
+        }
+
+        function silenceLast() {
+            $('.last').off('click');
+        }
+
         // {#function responsible for starting review#}
         function initGame() {
             var start = $('.start');
             start.one('click', function () {
                 nextMove();
+                lastMove();
                 console.log('start!');
                 adjustPlayerColor();
                 moveGameRecord();
@@ -114,12 +138,11 @@
         // {#    so checking if that happened in Game its checked in Django and imported as context with value yes or no#}
         function adjustPlayerColor() {
             console.log(colorSwap + '   testtetstetr');
-            if (colorSwap == 'yes') {
+            if (colorSwap === 'yes') {
                 /*               $('.player1').html('O');
                                $('.player2').html('X');*/
                 $('.player1').html(white_img);
                 $('.player2').html(black_img);
-
             }
             else {
                 $('.player1').html(black_img);
@@ -181,8 +204,14 @@
                         $('.' + context[i][0] + '.' + context[i][1] + '').html($('<img src="' + black_src + '">'));
                         move += 1;
                     }
-
+                    if (move === context.length) {
+                        silenceLast();
+                    } else {
+                        lastMove();
+                    }
                 }
+                silencePrev();
+                prevMove();
             });
         }
 
