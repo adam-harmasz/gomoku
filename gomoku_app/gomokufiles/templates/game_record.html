@@ -1,23 +1,21 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block style %}
-
     <link rel="stylesheet" href="{% static 'css/game_record_style.css' %}">
-
 {% endblock %}
 
 {% block content %}
-
     <main role="main" class="container">
         <div class="row">
             <div class="col-lg-8">
                 <div class="button-container">
+                    <img id="black_stone" src="{% static 'img/Black_Go_Stone.png' %}">
                     <button class="buttons start">start</button>
-                    <button class="buttons next">next</button>
-                    <button class="buttons prev">prev</button>
-                    <button class="buttons board-clear">Clear</button>
+                    <button class="buttons board-clear">clear</button>
+                    <button class="buttons prev"><--</button>
+                    <button class="buttons next">--></button>
+                    <img id="white_stone" src="{% static 'img/White_Go_Stone.png' %}">
                 </div>
             </div>
             <div class="col-lg-4">
@@ -31,9 +29,6 @@
             </div>
         </div>
         <div class="row">
-           {% comment %} <div class="col-lg-1">
-                <ol class="board-numbers"></ol>
-            </div>{% endcomment %}
             <div class="col-lg-9">
                 <div class="board-container"></div>
             </div>
@@ -42,16 +37,17 @@
             </div>
         </div>
     </main>
-
 {% endblock %}
 
 {% block javascript %}
     <script type="text/javascript" src="{% static 'js/game_record.js' %}"></script>
     <script>
-
         var context = {{ game_record|safe }},
-            colorSwap = '{{ color_swap|safe }}';
-
+            colorSwap = '{{ color_swap|safe }}',
+            white_src = $('#white_stone').attr('src'),
+            black_src = $('#black_stone').attr('src'),
+            white_img = $('<img src="' + white_src + '" />'),
+            black_img = $('<img src="' + black_src + '" />');
     </script>
 {% endblock %}
 

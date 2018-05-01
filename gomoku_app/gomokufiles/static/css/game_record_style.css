@@ -30,6 +30,7 @@
 .button-container {
     display: inline;
     margin-right: 200px;
+    vertical-align: bottom;
 }
 
 .game-record {
@@ -63,10 +64,10 @@ body {
     color: black;
 }
 
-.board-coord-slave {
+/*.board-coord-slave {
     position: absolute;
     bottom: 20%;
-}
+}*/
 
 #coord-0 {
     color: azure;
@@ -75,6 +76,13 @@ body {
 .players {
     text-align: left;
     float: left;
+}
+
+img {
+    height: 30px;
+    width: 30px;
+    vertical-align: center;
+    margin-bottom: 9px;
 }
 
 

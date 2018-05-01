@@ -1,10 +1,12 @@
 
     $(document).ready(function () {
 
-        var turn = 'O',
+        var /*$black_stone = $('#black_stone').append(),
+            $white_stone = $('#white_stone').append(),*/
+            turn = 'O',
             move = 0,
             grid_coordinates = ['o/x', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'];
-        console.log(context);
+        console.log(white_img);
 
         // {#Creating board#}
         function board() {
@@ -51,13 +53,24 @@
                 turn = turn === 'O' ? 'X' : 'O';
                 console.log(context[move][0] + context[move][1]);
                 console.log(move + 'KTÓRY RUCH');
-                $('.' + context[move][0] + '.' + context[move][1] + '').html(turn);
-                move += 1;
-                if (move === 1) {
-                    prevMove();
-                } else if (move >= context.length) {
-                    silenceNext();
+                if (turn === 'O') {
+                    $('.' + context[move][0] + '.' + context[move][1] + '').html($('<img src="' + white_src + '">'));
+                    move += 1;
+                    if (move === 1) {
+                        prevMove();
+                    } else if (move >= context.length) {
+                        silenceNext();
+                    }
+                } else {
+                    $('.' + context[move][0] + '.' + context[move][1] + '').html($('<img src="' + black_src + '">'));
+                    move += 1;
+                    if (move === 1) {
+                        prevMove();
+                    } else if (move >= context.length) {
+                        silenceNext();
+                    }
                 }
+
             })
         }
 
@@ -102,12 +115,15 @@
         function adjustPlayerColor() {
             console.log(colorSwap + '   testtetstetr');
             if (colorSwap == 'yes') {
-                $('.player1').html('O');
-                $('.player2').html('X');
+                /*               $('.player1').html('O');
+                               $('.player2').html('X');*/
+                $('.player1').html(white_img);
+                $('.player2').html(black_img);
+
             }
             else {
-                $('.player1').html('X');
-                $('.player2').html('O');
+                $('.player1').html(black_img);
+                $('.player2').html(white_img);
             }
         }
 
@@ -158,8 +174,14 @@
                 move = 0;
                 for (var i = 0; i < parseInt($(this).attr('name'), 10); i++){
                     turn = turn === 'O' ? 'X' : 'O';
-                    $('.' + context[i][0] + '.' + context[i][1] + '').html(turn);
-                    move += 1;
+                    if (turn === 'O') {
+                        $('.' + context[i][0] + '.' + context[i][1] + '').html($('<img src="' + white_src + '">'));
+                        move += 1;
+                    } else {
+                        $('.' + context[i][0] + '.' + context[i][1] + '').html($('<img src="' + black_src + '">'));
+                        move += 1;
+                    }
+
                 }
             });
         }
