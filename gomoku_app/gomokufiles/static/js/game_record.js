@@ -35,9 +35,10 @@
 
         // {#Adding move on board from game record which is imported from Django back-end as context#}
         function nextMove() {
-            var searchDiv = $('.next');
+            var search_div = $('.next');
 
-            searchDiv.on('click', function () {
+            search_div.on('click', function (event) {
+                event.preventDefault();
                 console.log(move + " który ruch");
                 turn = turn === 'O' ? 'X' : 'O';
                 console.log(context[move][0] + context[move][1]);
@@ -68,9 +69,10 @@
 
         // {#Creating function to undo moves#}
         function prevMove() {
-            var searchDiv = $('.prev');
+            var search_div = $('.prev');
 
-            searchDiv.on('click', function () {
+            search_div.on('click', function (event) {
+                event.preventDefault();
                 turn = turn === 'O' ? 'X' : 'O';
                 if (move === context.length) {
                     silenceNext();
@@ -92,11 +94,13 @@
             $('.prev').off('click');
         }
 
+        //Added a button which will show load on board whole game
         function lastMove() {
             var last_button = $('.last'),
                 board_slave = $('.col-slave');
 
-            last_button.on('click', function () {
+            last_button.on('click', function (event) {
+                event.preventDefault();
                 board_slave.html('');
                 turn = 'O';
                 move = 0;
@@ -125,7 +129,8 @@
         // {#function responsible for starting review#}
         function initGame() {
             var start = $('.start');
-            start.one('click', function () {
+            start.one('click', function (event) {
+                event.preventDefault();
                 nextMove();
                 lastMove();
                 console.log('start!');
@@ -139,8 +144,6 @@
         function adjustPlayerColor() {
             console.log(colorSwap + '   testtetstetr');
             if (colorSwap === 'yes') {
-                /*               $('.player1').html('O');
-                               $('.player2').html('X');*/
                 $('.player1').html(white_img);
                 $('.player2').html(black_img);
             }
@@ -176,7 +179,8 @@
             var divBoardSlave = $('.col-slave'),
                 clearButton = $('.board-clear');
 
-            clearButton.on('click', function () {
+            clearButton.on('click', function (event) {
+                event.preventDefault();
                 divBoardSlave.html('');
                 turn = 'O';
                 move = 0;
@@ -191,7 +195,9 @@
             var divBoardSlave = $('.col-slave'),
                 gameRecordDivs = $('.game-record-slave');
 
-            gameRecordDivs.on('click', function () {
+            gameRecordDivs.on('click', function (event) {
+                event.preventDefault();
+
                 divBoardSlave.html('');
                 turn = 'O';
                 move = 0;

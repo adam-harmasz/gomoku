@@ -2,21 +2,22 @@
 
 {% block content %}
 
-    <div class="container-fluid">
-
-    <div class="row">{{ err }}</div>
-
-    <div class="row">
-
-        <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="OK">
-        </form>
+    <div class="container text-center" style="margin-top: 100px">
+        <div class="row" style="display: inline-grid">
+            <div class="col" >
+                <form class="form-actions" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Log in">
+                </form> <br><br>
+            </div>
+            <div class="col">
+                <div class="text-capitalize">If you don't have an account register now!</div></br>
+                <a href="/registration"><div class="text-center">Register</div></a>
+            </div>
+        </div>
 
     </div>
 
-
-    </div>
 
 {% endblock %}

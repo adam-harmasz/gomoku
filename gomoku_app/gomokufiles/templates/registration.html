@@ -1,17 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="row2">{{ err }}</div>
-
-        <div class="row2">
-
-            <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="OK">
-            </form>
-
+    <div class="container text-center" style="margin-top: 100px">
+        <div class="row" style="display: inline-grid">
+            <div class="col">
+                <form class="text-justify" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input class="submit-row" type="submit" value="OK" style="text-align: center">
+                </form>
+            </div>
         </div>
     </div>
 

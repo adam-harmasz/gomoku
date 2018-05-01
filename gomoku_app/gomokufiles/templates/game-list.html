@@ -2,9 +2,11 @@
 
 {% block content %}
     <main role="main" class="container">
-        <div class="list-group-item-danger" style="background-color: azure">
-            <ul class="list-group-item">
-                <div class="dropdown-header">Lista zapisanych gier</div>
+        <div class="list-group-item" style="background-color: aliceblue">
+            <div class="list-group-item-heading">
+                <h3>Lista zapisanych gier</h3>
+            </div>
+            <ul class="list-group" >
                 {% for item in games %}
                     <li>
                         <a href="/game-record/{{ item.id }}/">{{ item.player_1 }}-{{ item.player_2 }}  {{ item.game_date }} </a>
