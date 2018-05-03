@@ -14,15 +14,12 @@
                     <img id="black_stone" src="{% static 'img/Black_Go_Stone.png' %}">
                     <button class="buttons start">start</button>
                     <button class="buttons board-clear"><<-</button>
-                    <button class="buttons prev"><--</button>
-                    <button class="buttons next">--></button>
-                    <button class="buttons last">->></button>
+                    <button class="buttons prev"> <-- </button>
+                    <button class="buttons next"> --> </button>
+                    <button class="buttons last"> ->> </button>
                     <img id="white_stone" src="{% static 'img/White_Go_Stone.png' %}">
                 </div>
             </div>
-{% comment %}            <div class="col-lg-2">
-                <div class="game-record"></div>
-            </div>{% endcomment %}
             <div class="col-lg-4">
                 <div class="players">
                     <table class="table-responsive">
@@ -43,11 +40,7 @@
     <script type="text/javascript" src="{% static 'js/game_record.js' %}"></script>
     <script>
         var context = {{ game_record|safe }},
-            colorSwap = '{{ color_swap|safe }}',
-            white_src = $('#white_stone').attr('src'),
-            black_src = $('#black_stone').attr('src'),
-            white_img = $('<img src="' + white_src + '" />'),
-            black_img = $('<img src="' + black_src + '" />');
+            colorSwap = '{{ color_swap|safe }}';
     </script>
 {% endblock %}
 

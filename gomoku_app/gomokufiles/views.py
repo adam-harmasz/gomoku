@@ -207,6 +207,16 @@ class GameDelete(LoginRequiredMixin, DeleteView):
     template_name_suffix = '_confirm_delete'
 
 
+class AboutView(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'about.html', {})
+
+
+class HelpView(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'help.html', {})
+
+
 
 
 

@@ -3,7 +3,11 @@
 
         var turn = 'O',
             move = 0,
-            grid_coordinates = ['o/x', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'];
+            grid_coordinates = ['o/x', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'],
+            white_src = $('#white_stone').attr('src'),
+            black_src = $('#black_stone').attr('src'),
+            white_img = $('<img src="' + white_src + '" />'),
+            black_img = $('<img src="' + black_src + '" />');
         console.log(white_img);
 
 /*        // {#Creating board#}

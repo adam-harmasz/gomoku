@@ -24,6 +24,8 @@
     width: 730px;
     height: 730px;
     padding: 0px;
+    float: left;
+    border-right: 2px;
 }
 
 .button-container {
@@ -43,7 +45,6 @@
 
 main {
     padding-top: 75px;
-    width: 80%;
 }
 
 .row2 {
@@ -74,6 +75,7 @@ body {
 .players {
     text-align: left;
     float: left;
+    border-left: 2px;
 }
 
 img {

@@ -16,17 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from gomoku_project.views import GameListView, GameCreateView, show_html, simpleView
 from gomokufiles.views import UploadFile, UploadedGameView, MainView, GamesListView, GameDelete, LoginView, LogoutView,\
-    RegistrationView
+    RegistrationView, AboutView, HelpView
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^test/$', show_html, name='test'),
-    url(r'^create/$', GameCreateView.as_view()),
-    url(r'^test2/$', simpleView.as_view()),
-
     ################ gomokufiles urls ######################
 
     url(r'^main', MainView.as_view(), name='index'),
@@ -37,4 +32,6 @@ urlpatterns = [
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
     url(r'^registration/$', RegistrationView.as_view(), name='register'),
+    url(r'^about/$', AboutView.as_view(), name='about'),
+    url(r'^help/$', HelpView.as_view(), name='help'),
 ]

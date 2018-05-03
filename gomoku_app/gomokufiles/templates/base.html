@@ -23,19 +23,22 @@
 
     {% block style %}
         <style>
-            h1,h2,h3,a {
-                color: darkblue;
-                font-family: 'Lobster';
+            nav {
+                font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+                font-size: 20px;
             }
 
             body {
+                font-family: SansSerif, serif;
                 min-height: 75rem;
                 padding-top: 4.5rem;
                 background-color: azure;
+
             }
 
             main {
                 padding-top: 75px;
+                font-size: larger;
             }
 
             .register-input {
@@ -44,6 +47,10 @@
 
             td {
                 width: 80px;
+            }
+
+            .help {
+                margin-top: 30px;
             }
 
         </style>
@@ -65,15 +72,21 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
+                        <a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="/file-upload">Upload Game <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="/game-list">Game List <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
+                        <a class="nav-link" href="/help">Help <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="/logout">Logout <span class="sr-only">(current)</span></a>
                     </li>
-{% comment %}                    <li class="nav-item">
+                    {% comment %}<li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
                     </li>
                     <li class="nav-item">

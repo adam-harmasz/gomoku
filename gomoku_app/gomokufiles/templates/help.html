@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <main role="main" class="container">
+
+        <div class="row">
+            <div>
+                <ol>
+                    <div class="page-header">How to upload game-record properly:</div>
+                    <li class="help">
+                        <div>
+                            If you don't have any game records please visit(it's my private account with some games) -
+                            <a href="https://www.playok.com/en/stat.phtml?u=henryy07&g=gm&sk=2">playok.com </a>
+                             you should see something like this: <br>
+                        </div>
+                        <div class="text-center help">
+                            <img style="height: 400px;" src="{% static 'img/help_1.png' %}">
+                        </div>
+                    </li>
+                    <li class="help">
+                        <div>
+                            You can download game records by choosing a game (clicking "txt")
+                            and then right clicking and choosing "save as" and save file(choose txt format) on your disc
+                        </div>
+                        <div class="text-center help">
+                            <img style="height: 400px;" src="{% static 'img/help2.png' %}">
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
