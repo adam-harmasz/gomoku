@@ -1,0 +1,17 @@
+[Event "?"]
+[Site "PlayOK"]
+[Date "2018.01.16"]
+[Round "-"]
+[Black "songokussj"]
+[White "dtm6392g"]
+[Result "1-0"]
+[Time "20:22:11"]
+[TimeControl "60"]
+[GameType "61,15"]
+[BlackElo "1939"]
+[WhiteElo "2025"]
+
+1. c3 d4 2. e4 white 3. -- f6 4. e6 e7 5. e5 e3 6. c5 g5 7. h4 f4 8. h6 d8 9.
+c9 d5 10. d6 f5 11. f7 g8 12. e8 g6 13. g7 h7 14. i5 i8 15. j9 j4 16. c7 c6 17.
+d9 c10 18. e9 f8 19. f9 g9 20. b9 1-0
+

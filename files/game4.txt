@@ -1,0 +1,17 @@
+[Event "8287640"]
+[Site "PlayOK"]
+[Date "2017.12.17"]
+[Round "7"]
+[Black "foxxik15"]
+[White "angst"]
+[Result "1-0"]
+[Time "19:54:04"]
+[TimeControl "420"]
+[GameType "61,15"]
+[BlackElo "1746"]
+[WhiteElo "1827"]
+
+1. c7 l11 2. f12 e11 3. d11 -- 4. black f10 5. e10 d12 6. g9 f9 7. e8 g11 8. e7
+e9 9. d8 f8 10. f7 g7 11. d10 d9 12. c9 b10 13. c8 c10 14. e5 i5 15. h6 b8 16.
+e6 e4 17. d7 b7 18. b9 f5 19. a10 1-0
+

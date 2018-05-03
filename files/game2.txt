@@ -1,0 +1,17 @@
+[Event "8287640"]
+[Site "PlayOK"]
+[Date "2017.12.17"]
+[Round "11"]
+[Black "angst"]
+[White "teovan"]
+[Result "0-1"]
+[Time "20:48:07"]
+[TimeControl "420"]
+[GameType "61,15"]
+[BlackElo "1786"]
+[WhiteElo "1855"]
+
+1. h1 h15 2. g1 white 3. -- h4 4. g5 g4 5. i4 f5 6. e4 e6 7. h3 d7 8. c8 f7 9.
+d5 f3 10. f6 e8 11. e7 d9 12. g6 f9 13. c6 c9 14. e9 d10 15. d11 g10 16. h11
+c10 17. b11 f10 18. e10 f11 19. f8 f12 20. f13 e11 21. b7 g13 0-1
+

@@ -1,0 +1,17 @@
+[Event "?"]
+[Site "PlayOK"]
+[Date "2018.04.15"]
+[Round "-"]
+[Black "kedluboss"]
+[White "henryy07"]
+[Result "1-0"]
+[Time "12:42:15"]
+[TimeControl "60"]
+[GameType "61,15"]
+[BlackElo "2061"]
+[WhiteElo "1970"]
+
+1. b2 d2 2. f3 i3 3. k3 -- 4. white -- 5. e5 g5 6. g6 h7 7. h5 i4 8. j5 j6 9.
+i7 e7 10. f6 d6 11. f8 h8 12. h9 f9 13. g8 f7 14. g7 e9 15. i8 g10 16. i9 i6
+17. k9 j9 18. j8 l10 19. l8 1-0
+
