@@ -17,13 +17,12 @@
     border-color: black;
     background: chocolate;
     font-size: 30px;
-    color: white;
     text-align: center;
 }
 
 .board-container {
-    width: 800px;
-    height: 800px;
+    width: 730px;
+    height: 730px;
     padding: 0px;
 }
 
@@ -39,8 +38,7 @@
 }
 
 .game-record-slave {
-    display: inline-grid;
-    text-align: left;
+    text-align: right;
 }
 
 main {
@@ -64,12 +62,12 @@ body {
     color: black;
 }
 
-/*.board-coord-slave {
+.board-coord-slave {
     position: absolute;
     bottom: 20%;
-}*/
+}
 
-#coord-0 {
+#coord-16 {
     color: azure;
 }
 

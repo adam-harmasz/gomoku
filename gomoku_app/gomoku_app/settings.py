@@ -1,3 +1,5 @@
+from django.core.urlresolvers import reverse_lazy
+
 """
 Django settings for gomoku_app project.
 
@@ -142,3 +144,10 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.MultiPartParser',
     )
 }
+
+
+# URL Login redirect
+
+LOGIN_REDIRECT_URL = reverse_lazy('index')
+LOGIN_URL = reverse_lazy('login')
+LOGOUT_URL = reverse_lazy('logout')

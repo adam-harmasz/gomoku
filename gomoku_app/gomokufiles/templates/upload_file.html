@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container text-center" style="margin-top: 100px">
+        <div class="row text-center" style="display: inline-grid">
+            <div class="col text-center" style="display: inline-grid">
+                <span> You can add Gomoku game record from
+                    <a href="https://www.playok.com/en/gomoku/">playok</a>
+                    <a href="https://www.kurnik.pl/gomoku/">(kurnik)</a>
+                    site using form which is below
+                </span>
+                <span style="float: left">
+                    <form method="POST" enctype="multipart/form-data" style="margin-top: 25px;">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Upload Game">
+                    </form>
+                </span>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

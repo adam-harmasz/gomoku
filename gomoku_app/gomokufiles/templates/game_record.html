@@ -9,32 +9,31 @@
     <main role="main" class="container">
         <div class="row">
             <div class="col-lg-8">
+                <div class="board-container"></div>
                 <div class="button-container">
                     <img id="black_stone" src="{% static 'img/Black_Go_Stone.png' %}">
                     <button class="buttons start">start</button>
-                    <button class="buttons board-clear">clear</button>
+                    <button class="buttons board-clear"><<-</button>
                     <button class="buttons prev"><--</button>
                     <button class="buttons next">--></button>
                     <button class="buttons last">->></button>
                     <img id="white_stone" src="{% static 'img/White_Go_Stone.png' %}">
                 </div>
             </div>
+{% comment %}            <div class="col-lg-2">
+                <div class="game-record"></div>
+            </div>{% endcomment %}
             <div class="col-lg-4">
                 <div class="players">
-                    <ul>
-                        <li><span>Player1: {{ player_1 }}</span> <span class="player1"></span></li>
-                        <li><span>Player2: {{ player_2 }}</span> <span class="player2"></span></li>
-                        <li><span>Wynik: {{ score }} </span></li>
-                    </ul>
+                    <table class="table-responsive">
+                        <tr ><td>Player1:</td><td>{{ player_1 }}</td><td><span class="player1"></span></td></tr>
+                        <tr><td>Player2:</td><td>{{ player_2 }}</td><td><span class="player2"></span></td></tr>
+                        <tr><td>Score:</td><td>{{ score }}</td></tr>
+                    </table>
+                    <table class="table-responsive" style="width: 150px;margin-top: 30px">
+                        <tr><td colspan="3" class="info-record" style="display: inline-flex; flex-wrap: wrap;"></td></tr>
+                    </table>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-9">
-                <div class="board-container"></div>
-            </div>
-            <div class="col-lg-2">
-                <div class="game-record"></div>
             </div>
         </div>
     </main>

@@ -1,14 +1,12 @@
 
     $(document).ready(function () {
 
-        var /*$black_stone = $('#black_stone').append(),
-            $white_stone = $('#white_stone').append(),*/
-            turn = 'O',
+        var turn = 'O',
             move = 0,
             grid_coordinates = ['o/x', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'];
         console.log(white_img);
 
-        // {#Creating board#}
+/*        // {#Creating board#}
         function board() {
             var board_div = $('.board-container');
             for (var j = 0; j < 16; j++) {
@@ -29,6 +27,32 @@
                         $(new_div_row.append(new_div_col));
                     }
                 }
+            }
+        }*/
+
+        // {#Creating board#} trying to convert board to have coordinates alike in playok.com
+        function board() {
+            var board_div = $('.board-container');
+                coord_counter = 0;
+            for (var j = 16; j > 0; j--) {
+                var new_div_row = $('<div class="col-master ' + grid_coordinates[coord_counter]
+                    + '"' + ' id="coord-' + j + '"' + '>' + grid_coordinates[coord_counter] + '</div>');
+                $(board_div.append(new_div_row));
+                if (coord_counter === 0){
+                    for (var k = 14; k > (-1); k--) {
+                        var numberCoordEl = $('<div class="board-coord"><span class="board-coord-slave">'
+                            + (k + 1) +'</span></div>');
+                        new_div_row.append(numberCoordEl);
+                    }
+                } else {
+                    for (var i = 15; i >= 1 ; i--) {
+                        var new_div_col = $('<div class="col-slave ' +
+                            grid_coordinates[coord_counter] +
+                            ' ' + (i) + '"' + '></div>');
+                        $(new_div_row.append(new_div_col));
+                    }
+                }
+                coord_counter += 1;
             }
         }
 
@@ -94,7 +118,7 @@
             $('.prev').off('click');
         }
 
-        //Added a button which will show load on board whole game
+        //Added a button which will load whole game and show it on the board
         function lastMove() {
             var last_button = $('.last'),
                 board_slave = $('.col-slave');
@@ -155,12 +179,16 @@
 
         // {#Creating game record visible on the right side of board#}
         function gameRecord() {
-            var divGameRecord = $('.game-record');
+            var divGameRecord = $('.info-record');
             console.log(divGameRecord);
             console.log(context[0] + context[1]);
 
             for (var i = 0; i < parseInt(context.length, 10); i++) {
-                var newDivGameRecord = $('<button class="game-record-slave" name="' + (i + 1) + '">' + (i + 1) + ': ' + context[i].join('') + '</button>');
+                var newDivGameRecord = $('<div><button class="game-record-slave" name="' + (i + 1) + '">' +
+                    (i + 1) +
+                    ': ' +
+                    context[i].join('') +
+                    '</button></div>');
                     $(divGameRecord.append(newDivGameRecord));
 
                 if ((i + 1) === context.length) {
@@ -186,7 +214,9 @@
                 move = 0;
                 silenceNext();
                 silencePrev();
+                silenceLast();
                 nextMove();
+                lastMove();
             })
         }
 

@@ -29,12 +29,12 @@ urlpatterns = [
 
     ################ gomokufiles urls ######################
 
-    url(r'^main', MainView.as_view()),
-    url(r'^file-upload/$', UploadFile.as_view()),
-    url(r'^game-record/(?P<id>(\d)+)/$', UploadedGameView.as_view()),
-    url(r'^game-list/$', GamesListView.as_view()),
-    url(r'^delete-game/(?P<pk>(\d)+)/$', GameDelete.as_view()),
-    url(r'^login/$', LoginView.as_view()),
-    url(r'^logout/$', LogoutView.as_view()),
-    url(r'^registration/$', RegistrationView.as_view()),
+    url(r'^main', MainView.as_view(), name='index'),
+    url(r'^file-upload/$', UploadFile.as_view(), name='upload'),
+    url(r'^game-record/(?P<id>(\d)+)/$', UploadedGameView.as_view(), name='game-record'),
+    url(r'^game-list/$', GamesListView.as_view(), name='game-list'),
+    url(r'^delete-game/(?P<pk>(\d)+)/$', GameDelete.as_view(), name='delete'),
+    url(r'^login/$', LoginView.as_view(), name='login'),
+    url(r'^logout/$', LogoutView.as_view(), name='logout'),
+    url(r'^registration/$', RegistrationView.as_view(), name='register'),
 ]

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.views import View
 from django.contrib.auth.models import User
@@ -86,7 +86,10 @@ class LogoutView(View):
 
 class MainView(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'main.html', {})
+        if request.user.is_authenticated():
+            return render(request, 'main.html', {})
+        else:
+            return redirect('/login')
 
 
 class UploadFile(LoginRequiredMixin, View):
@@ -95,7 +98,7 @@ class UploadFile(LoginRequiredMixin, View):
         ctx = {
             'form': form,
         }
-        return render(request, 'gomoku_file.html', ctx)
+        return render(request, 'upload_file.html', ctx)
 
     def post(self, request):
         form = GomokuFileForm(request.POST, request.FILES)
@@ -165,10 +168,10 @@ class UploadFile(LoginRequiredMixin, View):
         ctx = {
             'form': form,
         }
-        return render(request, 'gomoku_file.html', ctx)
+        return render(request, 'upload_file.html', ctx)
 
 
-class UploadedGameView(View):
+class UploadedGameView(LoginRequiredMixin, View):
     def get(self, request, id):
         gomoku_file = GomokuFiles.objects.get(pk=id)
         player_1 = gomoku_file.player_1
@@ -189,7 +192,7 @@ class UploadedGameView(View):
         return render(request, 'game_record.html', ctx)
 
 
-class GamesListView(View):
+class GamesListView(LoginRequiredMixin, View):
     def get(self, request):
         games = GomokuFiles.objects.all()
         ctx = {
@@ -198,7 +201,7 @@ class GamesListView(View):
         return render(request, 'game-list.html', ctx)
 
 
-class GameDelete(DeleteView):
+class GameDelete(LoginRequiredMixin, DeleteView):
     model = GomokuFiles
     success_url = '/game-list/'
     template_name_suffix = '_confirm_delete'
