@@ -1,2 +1,5 @@
-# gomoku
-Web application to play/review gomoku games
+# gomoku application
+
+Gomoku application that can be used to review gomoku games from playok.com
+
+

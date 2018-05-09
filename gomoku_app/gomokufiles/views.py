@@ -87,25 +87,38 @@ class LogoutView(View):
 class MainView(LoginRequiredMixin, View):
     def get(self, request):
         if request.user.is_authenticated():
-            return render(request, 'main.html', {})
-        else:
-            return redirect('/login')
+            user_name = request.user.username
+            user_id = request.user.pk
+            ctx = {
+                'user_name': user_name,
+            }
+            return render(request, 'main.html', ctx)
 
 
 class UploadFile(LoginRequiredMixin, View):
     def get(self, request):
         form = GomokuFileForm()
+        if request.user.is_authenticated():
+            user_name = request.user.username
         ctx = {
             'form': form,
+            'user_name': user_name,
         }
         return render(request, 'upload_file.html', ctx)
 
     def post(self, request):
         form = GomokuFileForm(request.POST, request.FILES)
+        if request.user.is_authenticated():
+            user = GomokuUser.objects.get(user=request.user.id)
+
         if form.is_valid():
+            gomoku_user = form.cleaned_data['gomoku_user']
+            # if gomoku_user == 'private':
+            #     gomoku_user = request.SESSION
             files = form.cleaned_data['files']
             gomoku_file = GomokuFiles(files=files)
             gomoku_file.save()
+
             with open('{}'.format(gomoku_file.files), 'r') as f:
                 f_content = f.read()
                 game_record = f_content.split('\n')
@@ -123,11 +136,11 @@ class UploadFile(LoginRequiredMixin, View):
                 time = re.search (game_time_regex, re.search (regex, game_record[7]).group()).group()
                 # Making list of only game record
                 for item in game_record[-5:-1]:
-                    only_record.append (item)
+                    only_record.append(item)
                 better_record = []
                 # using regex to find only move e.g.(a1, b2, etc.) and chose of colour from game record
                 for item in only_record:
-                    re_item = re.finditer (r'(white|black|[a-l][0-9]+)', format (item))
+                    re_item = re.finditer (r'(white|black|[a-l][0-9]+)', format(item))
                     if re_item is not None:
                         for better_item in re_item:
                             temp_array = []
@@ -162,6 +175,10 @@ class UploadFile(LoginRequiredMixin, View):
                 gomoku_file.game_data = f_content
                 gomoku_file.save()
 
+                if gomoku_user == 'private':
+                    gomoku_file.gomoku_user.add(user)
+                    gomoku_file.save()
+
             return HttpResponseRedirect('/game-record/{}'.format(gomoku_file.id))
         else:
             form = GomokuFileForm()
@@ -180,6 +197,8 @@ class UploadedGameView(LoginRequiredMixin, View):
         color_swap = gomoku_file.color_swap
         score = gomoku_file.score
         game_date = gomoku_file.game_date
+        if request.user.is_authenticated():
+            user_name = request.user.username
 
         ctx = {
             'game_record': game_record,
@@ -188,15 +207,23 @@ class UploadedGameView(LoginRequiredMixin, View):
             'player_2': player_2,
             'color_swap': color_swap,
             'game_date': game_date,
+            'user_name': user_name,
         }
         return render(request, 'game_record.html', ctx)
 
 
 class GamesListView(LoginRequiredMixin, View):
     def get(self, request):
-        games = GomokuFiles.objects.all()
+        if request.user.is_authenticated():
+            user = GomokuUser.objects.get(user=request.user.pk)
+            user_name = request.user.username
+        games = GomokuFiles.objects.all().exclude(gomoku_user=user)
+        private_games = GomokuFiles.objects.filter(gomoku_user=user)
         ctx = {
             'games': games,
+            'private_games': private_games,
+            'user': user,
+            'user_name': user_name,
         }
         return render(request, 'game-list.html', ctx)
 
@@ -209,12 +236,22 @@ class GameDelete(LoginRequiredMixin, DeleteView):
 
 class AboutView(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'about.html', {})
+        if request.user.is_authenticated():
+            user_name = request.user.username
+        ctx = {
+            'user_name': user_name,
+        }
+        return render(request, 'about.html', ctx)
 
 
 class HelpView(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'help.html', {})
+        if request.user.is_authenticated():
+            user_name = request.user.username
+        ctx = {
+            'user_name': user_name,
+        }
+        return render(request, 'help.html', ctx)
 
 
 

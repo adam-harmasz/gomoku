@@ -4,10 +4,21 @@
     <main role="main" class="container">
         <div class="list-group-item" style="background-color: aliceblue">
             <div class="list-group-item-heading">
-                <h3>Lista zapisanych gier</h3>
+                <h3>List of public game records</h3>
             </div>
             <ul class="list-group" >
                 {% for item in games %}
+                    <li>
+                        <a href="/game-record/{{ item.id }}/">{{ item.player_1 }}-{{ item.player_2 }}  {{ item.game_date }} </a>
+                        <a href="/delete-game/{{ item.id }}" style="text-align: right"> (delete) </a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="list-group-item-heading" style="margin-top: 50px">
+                <h3>List of your private game records</h3>
+            </div>
+            <ul class="list-group">
+                {% for item in private_games %}
                     <li>
                         <a href="/game-record/{{ item.id }}/">{{ item.player_1 }}-{{ item.player_2 }}  {{ item.game_date }} </a>
                         <a href="/delete-game/{{ item.id }}" style="text-align: right"> (delete) </a>

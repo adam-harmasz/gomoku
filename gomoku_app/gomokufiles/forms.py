@@ -2,8 +2,15 @@ from django import forms
 from django.core.validators import validate_email
 
 
+CHOICE = (
+    ('public', 'public'),
+    ('private', 'private'),
+)
+
+
 class GomokuFileForm(forms.Form):
     files = forms.FileField(widget=forms.FileInput(attrs={'class': 'input-field'}))
+    gomoku_user = forms.ChoiceField(choices=CHOICE)
 
 
 class LoginForm(forms.Form):

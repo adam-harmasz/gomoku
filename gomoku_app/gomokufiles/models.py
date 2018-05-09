@@ -4,6 +4,11 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
+class GomokuUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    email = models.EmailField(max_length=64, unique=True, default='')
+
+
 class GomokuFiles(models.Model):
     player_1 = models.CharField(max_length=255, null=True)
     player_2 = models.CharField(max_length=255, null=True)
@@ -13,6 +18,7 @@ class GomokuFiles(models.Model):
     game_record = models.TextField(null=True)
     score = models.CharField(max_length= 50, null=True)
     game_date = models.CharField(max_length=50, null=True)
+    gomoku_user = models.ManyToManyField(GomokuUser, null=True)
 
     def __str__(self):
         return 'player 1: {}  player 2: {} swap: {}, game record: {}'.format(
@@ -23,10 +29,7 @@ class GomokuFiles(models.Model):
         )
 
 
-class GomokuUser(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    gomoku_files = models.ForeignKey(GomokuFiles, on_delete=models.CASCADE, null=True)
-    email = models.EmailField(max_length=64, unique=True, default='')
+
 
 
 # class FilesData(models.Model):
